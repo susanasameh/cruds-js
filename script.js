@@ -104,3 +104,15 @@ function showData() {
     
 }
 showData();
+
+//delete one product should have parameter
+function deleteProduct(i) {
+    // console.log(i);
+    //use splice to delete item in array (place of delete, no of deleted item)
+    productsData.splice(i, 1);
+    //save data back to local storage
+    localStorage.setItem('product', JSON.stringify(productsData));
+    //show updated data
+    showData();
+    
+}
