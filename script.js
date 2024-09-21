@@ -101,7 +101,18 @@ function showData() {
 
 
     document.getElementById('tbody').innerHTML = table;
-    
+    // delete all
+
+//make a button appear when the table has products
+    //1-create an empty div in html to add the button
+    let btnDeleteAll = document.getElementById('deleteAll');
+    if (productsData.length > 0) {
+        btnDeleteAll.innerHTML = `
+        <button onclick="deleteAll()">Delete All</button>
+        `
+    } else {
+        btnDeleteAll.innerHTML = '';
+    }
 }
 showData();
 
@@ -119,3 +130,20 @@ function deleteProduct(i) {
     showData();
     
 }
+
+// delete all
+
+//make a button appear when the table has products
+//1-create an empty div in html to add the button
+
+function deleteAll() {
+    // console.log('delete all');
+    //delete all products in localStorage
+    localStorage.clear();
+    //delete all products in productsData array
+    productsData.splice(0);
+    //show updated data
+    showData();
+}
+
+
