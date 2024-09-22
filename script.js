@@ -51,9 +51,26 @@ submit.onclick = function () {
         total: total.innerHTML,
         count: count.value,
         category: category.value
-    }
+    };
     // console.log(newProduct);
-    productsData.push(newProduct);
+
+
+    //count
+    
+    // make if condition to know if there was countNo. > 1 to display many items in table
+    if (newProduct.count > 1) {
+        //make a for loop to add all item content as a number of count
+        for (let i = 0; i < newProduct.count; i++) {
+            //using count to fetch data
+           productsData.push(newProduct);           
+        }        
+    } else {
+        productsData.push(newProduct);
+    };
+
+
+
+    // productsData.push(newProduct);
     localStorage.setItem('product', JSON.stringify(productsData));
     // console.log(productsData);
 
@@ -107,9 +124,11 @@ function showData() {
     //1-create an empty div in html to add the button
     let btnDeleteAll = document.getElementById('deleteAll');
     if (productsData.length > 0) {
+         //to know the number of items in the array we add (${productsData.length})
         btnDeleteAll.innerHTML = `
-        <button onclick="deleteAll()">Delete All</button>
+        <button onclick="deleteAll()">Delete All(${productsData.length})</button> 
         `
+       
     } else {
         btnDeleteAll.innerHTML = '';
     }
@@ -145,5 +164,8 @@ function deleteAll() {
     //show updated data
     showData();
 }
+
+
+
 
 
